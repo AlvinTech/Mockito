@@ -203,4 +203,23 @@ public class MockitoTest1 {
         System.out.println(listMock.get(1));
     }
 
+
+    //
+    @Test
+    public void test12(){
+        List listMock = Mockito.mock(List.class);
+        Mockito.doThrow(new RuntimeException()).when(listMock).isEmpty();
+        Mockito.doReturn("1").when(listMock).get(0);
+        Mockito.doNothing().when(listMock).clear();
+        Mockito.doAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
+                return "this is return answer";
+            }
+        }).when(listMock).get(1);
+
+        listMock.clear();
+        System.out.println(listMock.get(0));
+        System.out.println(listMock.get(1));
+    }
+
 }
